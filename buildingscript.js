@@ -38,7 +38,8 @@ function init() {
 
     // Event Listener for clicking to add cubes
     window.addEventListener('click', onMouseClick, false);
-
+    window.addEventListener('touchstart', onMouseClick, false);
+    
     // Resize event
     window.addEventListener('resize', onWindowResize, false);
 }
