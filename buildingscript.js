@@ -1,6 +1,7 @@
 import * as THREE from 'https://unpkg.com/three@0.173.0/build/three.module.js';
+import {OrbitControls} from 'https://unpkg.com/three@0.173.0/build/addons/controls/OrbitControls.js'
 
-let scene, camera, renderer, raycaster, mouse;
+let scene, camera, renderer, raycaster, mouse, controls;
 let plane, objects = [];
 
 init();
