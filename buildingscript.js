@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.173.0/build/three.cjs';
+import * as THREE from 'https://unpkg.com/three@0.173.0/build/three.module.js';
 
 let scene, camera, renderer, raycaster, mouse;
 let plane, objects = [];
