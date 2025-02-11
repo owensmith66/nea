@@ -3,7 +3,8 @@ import * as THREE from 'three';
 
 
 
-let scene, camera, renderer, raycaster, mouse, controls;
+let scene, camera, renderer, raycaster, mouse;
+let movementSpeed = 1;
 let plane, objects = [];
 let keysDown = {}
 
