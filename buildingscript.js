@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 
 
@@ -24,7 +24,7 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     //OrbitControls
-    const controls = new OrbitControls(camera, renderer)
+    //const controls = new OrbitControls(camera, renderer)
 
     // Light
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -119,6 +119,6 @@ function handleInput() {
         camera.position.x += movementSpeed;
       }
 
-      controls.update()
+      //controls.update()
 
 }
