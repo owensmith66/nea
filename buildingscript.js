@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { randFloat } from 'three/src/math/MathUtils';
 
 
 let scene, camera, renderer, raycaster, mouse, controls;
@@ -15,11 +16,14 @@ function init() {
     // Create camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.set(0, 10, 20);
-    
+
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+
+    //OrbitControls
+    const controls = new OrbitControls(camera, renderer)
 
     // Light
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -81,6 +85,10 @@ function addCube(x, y, z) {
 
 // Animation loop
 function animate() {
+
+    camera.position.set(randFloat(0,100), randFloat(0,100), randFloat(0,100));
+    controls.update();
+
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
