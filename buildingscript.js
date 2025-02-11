@@ -102,7 +102,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    controls.update()
+    handleInput()
 
     renderer.render(scene, camera);
 }
@@ -121,5 +121,6 @@ function handleInput() {
         camera.position.x += movementSpeed;
       }
 
+      controls.update()
 
 }
