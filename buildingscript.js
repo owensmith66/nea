@@ -48,11 +48,11 @@ function init() {
 
     //Listen for keys being pressed/released
     window.addEventListener('keydown', (event) => {
-        keyboard[event.key] = true;
+        keysDown[event.key] = true;
       });
 
       window.addEventListener('keyup', (event) => {
-        keyboard[event.key] = false;
+        keysDown[event.key] = false;
       });
 
 
@@ -62,7 +62,7 @@ function init() {
 
 // Handle window resize
 function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = window.innerWidth / window.innerHeight; 
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
