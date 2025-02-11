@@ -20,8 +20,4 @@ window.onerror = function (message, source, lineno, colno, error) {
     return true;
   };
   
-  // Example of triggering an error
-  setTimeout(() => {
-    nonExistentFunction(); // This will cause an error
-  }, 1000);
   
