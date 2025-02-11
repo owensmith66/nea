@@ -7,6 +7,20 @@
     <style>
         body { margin: 0; overflow: hidden; }
         canvas { display: block; }
+        
+        #error-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        z-index: 9999;
+        max-width: 100%;
+        word-wrap: break-word;
+    }
+  
     </style>
     <script type="importmap">
         {
@@ -20,4 +34,16 @@
 <body>
     <script type="module" src="buildingscript.js"></script>
 </body>
+
+<!-- this is used to display errors since school laptops block dev tools-->
+<body>
+  <h1>JavaScript Error Display Example</h1>
+  <p>Any JavaScript errors will appear at the top of the page.</p>
+
+  <div id="error-container"></div>
+
+  <script src="script.js"></script>
+</body>
+
+
 </html>
