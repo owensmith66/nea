@@ -39,7 +39,7 @@ function init() {
     scene.add(plane);
 
     // Raycaster & Mouse
-    raycaster = new THREE.Raycaster();
+    raycaster = new THREE.Raycaster(camera.position);
     mouse = new THREE.Vector2();
     
     //Listen to click
