@@ -5,6 +5,7 @@ import { randFloat } from 'three/src/math/MathUtils';
 
 let scene, camera, renderer, raycaster, mouse, controls;
 let plane, objects = [];
+let keysDown = {}
 
 init();
 animate();
@@ -40,11 +41,21 @@ function init() {
     // Raycaster & Mouse
     raycaster = new THREE.Raycaster();
     mouse = new THREE.Vector2();
-
-    // Event Listener for clicking to add cubes
-    window.addEventListener('click', onMouseClick, false);
-    window.addEventListener('touchstart', onMouseClick, false);
     
+    //Listen to click
+    window.addEventListener('click', onMouseClick, false)
+
+
+    //Listen for keys being pressed/released
+    window.addEventListener('keyDown', (event) => {
+        keyboard[event.key] = true;
+      });
+
+      window.addEventListener('keyUp', (event) => {
+        keyboard[event.key] = false;
+      });
+
+
     // Resize event
     window.addEventListener('resize', onWindowResize, false);
 }
@@ -94,4 +105,21 @@ function animate() {
     controls.update()
 
     renderer.render(scene, camera);
+}
+
+function handleInput() {
+    if (keysDown['w']) {
+        camera.position.z -= movementSpeed;
+      }
+      if (keysDown['s']) {
+        camera.position.z += movementSpeed;
+      }
+      if (keysDown['a']) {
+        camera.position.x -= movementSpeed;
+      }
+      if (keysDown['d']) {
+        camera.position.x += movementSpeed;
+      }
+
+
 }
