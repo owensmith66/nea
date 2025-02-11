@@ -47,11 +47,11 @@ function init() {
 
 
     //Listen for keys being pressed/released
-    window.addEventListener('keyDown', (event) => {
+    window.addEventListener('keydown', (event) => {
         keyboard[event.key] = true;
       });
 
-      window.addEventListener('keyUp', (event) => {
+      window.addEventListener('keyup', (event) => {
         keyboard[event.key] = false;
       });
 
