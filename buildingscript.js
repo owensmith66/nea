@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { randFloat } from 'three/src/math/MathUtils';
+
 
 
 let scene, camera, renderer, raycaster, mouse, controls;
@@ -82,8 +82,6 @@ function onMouseClick(event) {
         addCube(point.x, point.y, point.z);
     }
 
-    camera.position.set(randFloat(0,100), randFloat(0,100), randFloat(0,100));
-    controls.update();
 }
 
 // Function to add a cube
