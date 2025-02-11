@@ -70,6 +70,9 @@ function onMouseClick(event) {
         const point = intersects[0].point;
         addCube(point.x, point.y, point.z);
     }
+
+    camera.position.set(randFloat(0,100), randFloat(0,100), randFloat(0,100));
+    controls.update();
 }
 
 // Function to add a cube
@@ -86,9 +89,9 @@ function addCube(x, y, z) {
 // Animation loop
 function animate() {
 
-    camera.position.set(randFloat(0,100), randFloat(0,100), randFloat(0,100));
-    controls.update();
-
     requestAnimationFrame(animate);
+
+    controls.update()
+
     renderer.render(scene, camera);
 }
