@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { updateCamera } from './camera'; 
+import { updateCamera } from './camera.js'; 
 
 
 
