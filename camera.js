@@ -1,4 +1,4 @@
-import {Vector2, Vector3} from "./three.module.js";
+import {Vector2, Vector3} from "three";
 
 let movementSpeed = 1;
 let rotationSpeed = 1/175;
