@@ -1,12 +1,12 @@
 import * as THREE from 'three';
-//import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { updateCamera } from './camera'; 
 
 
 
 let scene, camera, renderer, raycaster, mouse;
-let movementSpeed = 1;
 let plane, objects = [];
 let keysDown = {}
+let mouseDelta = new THREE.Vector2(0,0);
 
 init();
 animate();
@@ -46,6 +46,13 @@ function init() {
     //Listen to click
     window.addEventListener('click', onMouseClick, false)
 
+    window.addEventListener('mousemove', (event) => {
+      if (event.buttons === 2) {
+        mouseDelta.x = event.movementX;
+        mouseDelta.y = event.movementY;
+      }
+    });
+      
 
     //Listen for keys being pressed/released
     window.addEventListener('keydown', (event) => {
@@ -101,25 +108,8 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    handleInput()
+    updateCamera(keysDown, mouseDelta);
 
     renderer.render(scene, camera);
 }
 
-function handleInput() {
-    if (keysDown['w']) {
-        camera.position.z -= movementSpeed;
-      }
-      if (keysDown['s']) {
-        camera.position.z += movementSpeed;
-      }
-      if (keysDown['a']) {
-        camera.position.x -= movementSpeed;
-      }
-      if (keysDown['d']) {
-        camera.position.x += movementSpeed;
-      }
-
-      //controls.update()
-
-}
