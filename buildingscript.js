@@ -106,7 +106,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    updateCamera(keysDown, mouseDelta);
+    camera.updateCamera(keysDown, mouseDelta);
 
     renderer.render(scene, camera);
 }
