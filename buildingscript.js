@@ -86,7 +86,8 @@ function onMouseClick(event) {
   //      const point = intersects[0].point;
  //       addCube(point.x, point.y, point.z);
 //    }
-    addCube(Camera.castRay());
+
+    addCube(camera.castRay());
     
 }
 
