@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { updateCamera } from './camera.js'; 
+import { Camera } from './camera.js'; 
 
 
 
@@ -16,16 +16,13 @@ function init() {
     scene = new THREE.Scene();
     
     // Create camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 10, 20);
+    camera = new Camera();
 
     // Renderer
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    //OrbitControls
-    //const controls = new OrbitControls(camera, renderer)
 
     // Light
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -82,14 +79,15 @@ function onMouseClick(event) {
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
     // Raycasting
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(plane);
+  //  raycaster.setFromCamera(mouse, camera);
+  //  const intersects = raycaster.intersectObject(plane);
 
-    if (intersects.length > 0) {
-        const point = intersects[0].point;
-        addCube(point.x, point.y, point.z);
-    }
-
+ //   if (intersects.length > 0) {
+  //      const point = intersects[0].point;
+ //       addCube(point.x, point.y, point.z);
+//    }
+    addCube(Camera.castRay());
+    
 }
 
 // Function to add a cube
