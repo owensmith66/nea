@@ -60,7 +60,7 @@ export class Camera {
     let rayLengthX = rayLengthY*Math.sin(rayDirectionX)
     let rayLengthZ = rayLengthY*Math.sin(rayDirectionZ)
 
-    finalPos = new Vector3(position.x + rayLengthX, planeHeight, position.z + rayLengthZ)
+    let finalPos = new Vector3(position.x + rayLengthX, planeHeight, position.z + rayLengthZ)
 
     return finalPos
   }
