@@ -4,6 +4,10 @@ let keysDown = {}
 
 let planeHeight = 0;
 
+let renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
 let rotation = new Vector2(0,0);
 let mouseDelta = new Vector2(0,0);
 
@@ -69,6 +73,7 @@ export class Camera {
     let camera = this.__cameraObject
     camera.aspect = window.innerWidth / window.innerHeight; 
     camera.updateProjectionMatrix();
+
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 

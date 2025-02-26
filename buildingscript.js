@@ -3,7 +3,7 @@ import { Camera } from './camera.js';
 
 
 
-let scene, camera, renderer, raycaster, mouse;
+let scene, camera, raycaster, mouse;
 let plane, objects = [];
 let keysDown = {}
 let mouseDelta = new THREE.Vector2(0,0);
@@ -17,13 +17,7 @@ function init() {
     
     // Create camera
     camera = new Camera();
-
-    // Renderer
-    renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-
+    
     // Light
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(10, 20, 10);
@@ -104,6 +98,5 @@ function animate() {
 
     camera.updateCamera(keysDown, mouseDelta);
 
-    renderer.render(scene, camera);
 }
 
