@@ -3,7 +3,7 @@ import { Camera } from './camera.js';
 
 
 
-let scene, camera, raycaster, mouse;
+let scene, camera, raycaster, renderer, mouse;
 let plane, objects = [];
 let keysDown = {}
 let mouseDelta = new THREE.Vector2(0,0);
@@ -18,6 +18,11 @@ function init() {
     // Create camera
     camera = new Camera();
     
+    //Renderer
+    let renderer = new WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
     // Light
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(10, 20, 10);
@@ -56,10 +61,16 @@ function init() {
 
 
     // Resize event
-    window.addEventListener('resize', camera.onWindowResize, false);
+    window.addEventListener('resize', onWindowResize, false);
 }
 
+function onWindowResize() {
+  let camera = camera.getCameraObject();
+  camera.aspect = window.innerWidth / window.innerHeight; 
+  camera.updateProjectionMatrix();
 
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
 
 // Handle mouse click to place a cube
 function onMouseClick(event) {
@@ -98,5 +109,6 @@ function animate() {
 
     camera.updateCamera(keysDown, mouseDelta);
 
+    renderer.render(scene, camera.getCameraObject());
 }
 

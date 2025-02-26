@@ -1,12 +1,10 @@
-import {Vector2, Vector3, PerspectiveCamera, WebGLRenderer} from "three";
+import {Vector2, Vector3, PerspectiveCamera} from "three";
 
 let keysDown = {}
 
 let planeHeight = 0;
 
-let renderer = new WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+
 
 let rotation = new Vector2(0,0);
 let mouseDelta = new Vector2(0,0);
@@ -69,13 +67,7 @@ export class Camera {
     return finalPos
   }
   
-  onWindowResize() {
-    let camera = this.__cameraObject
-    camera.aspect = window.innerWidth / window.innerHeight; 
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
+ 
 
   updateCamera(keys, mDelt) {
     keysDown = keys;
@@ -83,8 +75,13 @@ export class Camera {
 
     this.__moveCamera();
     this.__rotateCamera();
-    renderer.render(scene, this.__cameraObject);
   }
+
+  getCameraObject() {
+    return this.__cameraObject;
+  }
+
+
 
   rayCastFromCamera() {
     
