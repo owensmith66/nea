@@ -62,15 +62,10 @@ function init() {
 
 
     // Resize event
-    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener('resize', camera.onWindowResize, false);
 }
 
-// Handle window resize
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight; 
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
+
 
 // Handle mouse click to place a cube
 function onMouseClick(event) {

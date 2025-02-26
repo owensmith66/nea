@@ -65,6 +65,13 @@ export class Camera {
     return finalPos
   }
   
+  onWindowResize() {
+    let camera = this.__cameraObject
+    camera.aspect = window.innerWidth / window.innerHeight; 
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
   updateCamera(keys, mDelt) {
     keysDown = keys;
     mouseDelta = mDelt;
