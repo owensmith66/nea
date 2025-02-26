@@ -1,10 +1,10 @@
-import {Vector2, Vector3, PerspectiveCamera} from "three";
+import {Vector2, Vector3, PerspectiveCamera, WebGLRenderer} from "three";
 
 let keysDown = {}
 
 let planeHeight = 0;
 
-let renderer = new THREE.WebGLRenderer({ antialias: true });
+let renderer = new WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
