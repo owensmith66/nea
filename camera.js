@@ -78,6 +78,7 @@ export class Camera {
 
     this.__moveCamera();
     this.__rotateCamera();
+    renderer.render(scene, this.__cameraObject);
   }
 
   rayCastFromCamera() {
