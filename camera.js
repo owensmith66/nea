@@ -4,7 +4,10 @@ let keysDown = {}
 
 let planeHeight = 0;
 
-
+function output(message) {
+  const messageContainer = document.getElementById('message-container');
+  messageContainer.innerHTML = message;
+}
 
 let rotation = new Vector2(0,0);
 let mouseDelta = new Vector2(0,0);
@@ -76,6 +79,8 @@ export class Camera {
     let rayLengthZ = rayLengthY*Math.sin(rayDirectionZ)
 
     let finalPos = new Vector3(position.x + rayLengthX, planeHeight, position.z + rayLengthZ)
+
+    output(`Raycast: ${finalPos.x}, ${finalPos.y}, ${finalPos.z}`)
 
     return finalPos
   }
