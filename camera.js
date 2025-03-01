@@ -1,5 +1,4 @@
 import {Vector2, Vector3, PerspectiveCamera} from "three";
-import {output} from "./output.js";
 
 let keysDown = {}
 
@@ -7,6 +6,11 @@ let planeHeight = 0;
 
 let rotation = new Vector2(0,0);
 let mouseDelta = new Vector2(0,0);
+
+function output(message) {
+  const messageContainer = document.getElementById('message-container');
+  messageContainer.innerHTML = message;
+}
 
 export class Camera {
   constructor() {

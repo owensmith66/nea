@@ -1,7 +1,5 @@
 import * as THREE from 'three';
 import { Camera } from './camera.js'; 
-import { output } from './errors.js';
-
 
 let scene, camera, raycaster, renderer, mouse;
 let plane, objects = [];
@@ -10,6 +8,11 @@ let mouseDelta = new THREE.Vector2(0,0);
 
 init();
 animate();
+
+function output(message) {
+  const messageContainer = document.getElementById('message-container');
+  messageContainer.innerHTML = message;
+}
 
 function init() {
     // Create scene
