@@ -22,6 +22,9 @@ window.onerror = function (message, source, lineno, colno, error) {
   
 
 
-
+export function output(message) {
+  const messageContainer = document.getElementById('message-container');
+  messageContainer.innerHTML = message;
+}
 
   

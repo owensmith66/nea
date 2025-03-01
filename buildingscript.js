@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { Camera } from './camera.js'; 
-
+import { output } from './errors.js';
 
 
 let scene, camera, raycaster, renderer, mouse;
@@ -93,12 +93,14 @@ function onMouseClick(event) {
 }
 
 // Function to add a cube
-function addCube(x, y, z) {
+function addCube(finalPosition) {
     const geometry = new THREE.BoxGeometry(2, 2, 2);
     const material = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff });
     const cube = new THREE.Mesh(geometry, material);
     
-    cube.position.set(Math.round(x / 2) * 2, 1, Math.round(z / 2) * 2);
+
+    output(`Cube Position: ${Math.round(finalPosition.x / 2) * 2}, 1, ${Math.round(finalPosition.z / 2) * 2}`);
+    cube.position.set(Math.round(finalPosition.x / 2) * 2, 1, Math.round(finalPosition.z / 2) * 2);
     scene.add(cube);
     objects.push(cube);
 }
