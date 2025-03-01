@@ -66,7 +66,7 @@ export class Camera {
       camera.rotation.setFromVector3(cameraRotation);
   }
 
-  castRay() {
+  /*castRay() {
     let camera = this.__cameraObject
     let rotation = camera.rotation
     let position = camera.position
@@ -84,6 +84,36 @@ export class Camera {
 
     return finalPos
   }
+    */
+   castRay() {
+    let camera = this.__cameraObject;
+    let { x: rotX, y: rotY } = camera.rotation;
+    let position = camera.position;
+
+    // Compute the direction vector from camera rotation
+    let direction = new Vector3(
+        Math.cos(rotY) * Math.cos(rotX),  // X direction
+        Math.sin(rotX),                  // Y direction
+        Math.sin(rotY) * Math.cos(rotX)   // Z direction
+    );
+
+    // Calculate intersection with the plane at height 'planeHeight'
+    let t = (planeHeight - position.y) / direction.y;
+
+    // Ensure ray is pointing downward
+    if (t < 0) return null; 
+
+    // Compute intersection point
+    let finalPos = new Vector3(
+        position.x + direction.x * t,
+        planeHeight,
+        position.z + direction.z * t
+    );
+
+    output(`Raycast: ${finalPos.x}, ${finalPos.y}, ${finalPos.z}`);
+
+    return finalPos;
+   }
   
  
 
@@ -100,8 +130,4 @@ export class Camera {
   }
 
 
-
-  rayCastFromCamera() {
-    
-  }
 }
