@@ -19,7 +19,7 @@ function init() {
     camera = new Camera();
     
     //Renderer
-    let renderer = new WebGLRenderer({ antialias: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
@@ -47,6 +47,7 @@ function init() {
         mouseDelta.x = event.movementX;
         mouseDelta.y = event.movementY;
       }
+      
     });
       
 
@@ -108,6 +109,7 @@ function animate() {
     requestAnimationFrame(animate);
 
     camera.updateCamera(keysDown, mouseDelta);
+    mouseDelta = new THREE.Vector2(0,0)
 
     renderer.render(scene, camera.getCameraObject());
 }

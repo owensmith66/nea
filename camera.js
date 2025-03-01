@@ -19,21 +19,34 @@ export class Camera {
   }
 
   __moveCamera() {
-    let camera = this.__cameraObject
+    let camera = this.__cameraObject;
+    let cameraRotation = camera.rotation;
+    let cameraPosition = camera.position;
+
     let movementSpeed = this.__movementSpeed;
-    
+    let relativeDirection = new Vector3(0,0,0);
+
+
     if (keysDown['w']) {
-      camera.position.z -= movementSpeed;
+      relativeDirection.z -= movementSpeed;
     }
     if (keysDown['s']) {
-      camera.position.z += movementSpeed;
+      relativeDirection.z += movementSpeed;
     }
     if (keysDown['a']) {
-      camera.position.x -= movementSpeed;
+      relativeDirection.x -= movementSpeed;
     }
     if (keysDown['d']) {
-      camera.position.x += movementSpeed;
+      relativeDirection.x += movementSpeed;
     }
+    if (keysDown['e']) {
+      relativeDirection.y += movementSpeed;
+    }
+    if (keysDown['q']) {
+      relativeDirection.y -= movementSpeed;
+    }
+
+    camera.position.add(relativeDirection.applyEuler(cameraRotation));
   }
 
   __rotateCamera() {
