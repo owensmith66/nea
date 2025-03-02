@@ -4,7 +4,7 @@ import { Camera } from './camera.js';
 let scene, camera, raycaster, renderer, mouse;
 let plane, objects = [];
 let keysDown = {}
-let mouseDelta = new THREE.Vector2(0,0);
+let mouseDelta, currentMousePosition = new THREE.Vector2(0,0);
 
 init();
 animate();
@@ -51,6 +51,9 @@ function init() {
         mouseDelta.y = event.movementY;
       }
       
+
+      currentMousePosition.x = event.clientX;
+      currentMousePosition.y = event.clientY;
     });
       
 
@@ -91,7 +94,7 @@ function onMouseClick(event) {
  //       addCube(point.x, point.y, point.z);
 //    }
 
-    addCube(camera.castRay());
+    addCube(camera.castRay(currentMousePosition));
     
 }
 
@@ -113,7 +116,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    camera.updateCamera(keysDown, mouseDelta);
+    camera.updateCamera(keysDown, mouseDelta, currentMousePosition);
     mouseDelta = new THREE.Vector2(0,0)
 
     renderer.render(scene, camera.getCameraObject());
