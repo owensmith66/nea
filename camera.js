@@ -91,7 +91,7 @@ export class Camera {
     return finalPos
   }
     */
-   castRay() {
+   castRay(currentMousePosition) {
       let rayOrigin = this.__cameraObject.position;
 
       let absoluteCameraPosition = this.__cameraObject.matrixWorld;
@@ -99,7 +99,7 @@ export class Camera {
       rayOrigin.setFromMatrixPosition(absoluteCameraPosition);
 
       //normalised device coordinates
-      let normalisedDC = new Vector3(mouseDelta.x, mouseDelta.y, 0.5);
+      let normalisedDC = new Vector3(currentMousePosition.x, currentMousePosition.y, 0.5);
         
       //maps screen location back into 3d space relative to camera
       normalisedDC.applyMatrix4(this.__cameraObject.projectionMatrixInverse);

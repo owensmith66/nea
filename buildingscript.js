@@ -5,7 +5,6 @@ let scene, camera, raycaster, renderer, mouse;
 let plane, objects = [];
 let keysDown = {}
 let mouseDelta = new THREE.Vector2(0,0);
-let currentMousePosition = THREE.Vector2(0,0);
 
 init();
 animate();
@@ -52,12 +51,6 @@ function init() {
         mouseDelta.y = event.movementY;
       }
       
-
-
-      currentMousePosition.x = event.clientX;
-      currentMousePosition.y = event.clientY;
-
-      output(`Mouse Position: ${currentMousePosition.x}, ${currentMousePosition.y}`);
     });
       
 
@@ -98,7 +91,7 @@ function onMouseClick(event) {
  //       addCube(point.x, point.y, point.z);
 //    }
 
-    addCube(camera.castRay(currentMousePosition));
+    addCube(camera.castRay(mouse));
     
 }
 
