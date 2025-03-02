@@ -1,5 +1,5 @@
 import {Vector2, Vector3, PerspectiveCamera} from "three";
-import { normaliseVector } from "./util";
+//import { normaliseVector } from "./util";
 
 let keysDown = {};
 
@@ -11,6 +11,11 @@ let mouseDelta = new Vector2(0,0);
 function output(message) {
   const messageContainer = document.getElementById('message-container');
   messageContainer.innerHTML = message;
+}
+
+function normaliseVector(vector) {
+  let magnitude = Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+  return new Vector3(vector.x / magnitude, vector.y / magnitude, vector.z / magnitude);
 }
 
 export class Camera {
