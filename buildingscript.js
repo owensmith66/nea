@@ -113,7 +113,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    camera.updateCamera(keysDown, mouseDelta, currentMousePosition);
+    camera.updateCamera(keysDown, mouseDelta);
     mouseDelta = new THREE.Vector2(0,0)
 
     renderer.render(scene, camera.getCameraObject());
