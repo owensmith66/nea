@@ -70,27 +70,10 @@ export class Camera {
       let cameraRotation = new Vector3(rotation.y, rotation.x, 0);
 
       camera.rotation.setFromVector3(cameraRotation);
+      
+      output(`Camera Rotation: ${camera.rotation.x.toFixed(2)*360/(2*Math.PI)}, ${camera.rotation.y.toFixed(2)*360/(2*Math.PI)}, ${camera.rotation.z.toFixed(2)*360/(2*Math.PI)}`);
   }
 
-  /*castRay() {
-    let camera = this.__cameraObject
-    let rotation = camera.rotation
-    let position = camera.position
-
-    let rayLengthY = position.y - planeHeight
-    let rayDirectionX = Math.PI/2 - rotation.x
-    let rayDirectionZ = Math.PI/2 - rotation.z
-    
-    let rayLengthX = rayLengthY*Math.sin(rayDirectionX)
-    let rayLengthZ = rayLengthY*Math.sin(rayDirectionZ)
-
-    let finalPos = new Vector3(position.x + rayLengthX, planeHeight, position.z + rayLengthZ)
-
-    output(`Raycast: ${finalPos.x}, ${finalPos.y}, ${finalPos.z}`)
-
-    return finalPos
-  }
-    */
    castRay(currentMousePosition) {
       let rayOrigin = this.__cameraObject.position;
 
