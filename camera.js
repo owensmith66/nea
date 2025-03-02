@@ -109,7 +109,7 @@ export class Camera {
 
 
       //gets a vector from the camera to this world position
-      let raydirection = normalisedDC - rayOrigin;
+      let raydirection = normalisedDC.sub(rayOrigin);
       raydirection = normaliseVector(raydirection);
 
       if (raydirection.y >= 0) {
