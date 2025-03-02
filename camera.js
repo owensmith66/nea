@@ -107,7 +107,6 @@ export class Camera {
       //maps space relative to camera to world space
       normalisedDC.applyMatrix4(this.__cameraObject.matrixWorld);
 
-      return normalisedDC;
 
       //gets a vector from the camera to this world position
       let raydirection = normalisedDC - rayOrigin;
@@ -121,6 +120,9 @@ export class Camera {
 
       let distance = (planeHeight - rayOrigin.y) / raydirection.y;
       
+      let intersectionPoint = new Vector3(rayOrigin.x + raydirection.x * distance, planeHeight, rayOrigin.z + raydirection.z * distance);
+
+      return intersectionPoint;
       
    }
   
