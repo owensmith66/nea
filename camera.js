@@ -1,6 +1,7 @@
 import {Vector2, Vector3, PerspectiveCamera} from "three";
+import { normaliseVector } from "./util";
 
-let keysDown = {}
+let keysDown = {};
 
 let planeHeight = 0;
 
@@ -53,7 +54,7 @@ export class Camera {
   }
 
   __rotateCamera() {
-    let camera = this.__cameraObject
+    let camera = this.__cameraObject;
     let rotationSpeed = this.__rotationSpeed;
     
       rotation.x -= mouseDelta.x * rotationSpeed;
@@ -86,33 +87,36 @@ export class Camera {
   }
     */
    castRay() {
-    let camera = this.__cameraObject;
-    let { x: rotX, y: rotY } = camera.rotation;
-    let position = camera.position;
+      let rayOrigin = this.__cameraObject.position;
 
-    // Compute the direction vector from camera rotation
-    let direction = new Vector3(
-        Math.cos(rotY) * Math.cos(rotX),  // X direction
-        Math.sin(rotX),                  // Y direction
-        Math.sin(rotY) * Math.cos(rotX)   // Z direction
-    );
+      let absoluteCameraPosition = this.__cameraObject.matrixWorld;
 
-    // Calculate intersection with the plane at height 'planeHeight'
-    let t = (planeHeight - position.y) / direction.y;
+      rayOrigin.setFromMatrixPosition(absoluteCameraPosition);
 
-    // Ensure ray is pointing downward
-    if (t < 0) return null; 
+      //normalised device coordinates
+      let normalisedDC = new Vector3(mouseDelta.x, mouseDelta.y, 0.5);
+        
+      //maps screen location back into 3d space relative to camera
+      normalisedDC.applyMatrix4(this.__cameraObject.projectionMatrixInverse);
 
-    // Compute intersection point
-    let finalPos = new Vector3(
-        position.x + direction.x * t,
-        planeHeight,
-        position.z + direction.z * t
-    );
+      //maps space relative to camera to world space
+      normalisedDC.applyMatrix4(this.__cameraObject.matrixWorld);
 
-    output(`Raycast: ${finalPos.x}, ${finalPos.y}, ${finalPos.z}`);
+      return normalisedDC;
 
-    return finalPos;
+      //gets a vector from the camera to this world position
+      let raydirection = normalisedDC - rayOrigin;
+      raydirection = normaliseVector(raydirection);
+
+      if (raydirection.y >= 0) {
+        //if the ray is pointing up or directly sideways it will never hit the plane
+        return null;
+      }
+
+
+      let distance = (planeHeight - rayOrigin.y) / raydirection.y;
+      
+      
    }
   
  
