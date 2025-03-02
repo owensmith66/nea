@@ -4,7 +4,8 @@ import { Camera } from './camera.js';
 let scene, camera, raycaster, renderer, mouse;
 let plane, objects = [];
 let keysDown = {}
-let mouseDelta, currentMousePosition = new THREE.Vector2(0,0);
+let mouseDelta = new THREE.Vector2(0,0);
+let currentMousePosition = THREE.Vector2(0,0);
 
 init();
 animate();
@@ -52,8 +53,11 @@ function init() {
       }
       
 
+
       currentMousePosition.x = event.clientX;
       currentMousePosition.y = event.clientY;
+
+      output(`Mouse Position: ${currentMousePosition.x}, ${currentMousePosition.y}`);
     });
       
 
