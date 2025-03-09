@@ -1,10 +1,13 @@
 import * as THREE from 'three';
 import { Camera } from './camera.js'; 
+import * as GLTFLoader  from 'three/addons/loaders/GLTFLoader.js';
 
-let scene, camera, raycaster, renderer, mouse;
+let scene, camera, renderer, mouse, currentFurniture, loader;
 let plane, objects = [];
 let keysDown = {}
 let mouseDelta = new THREE.Vector2(0,0);
+
+currentFurniture = "models/tables/roundedTable.glb";
 
 init();
 animate();
@@ -38,9 +41,11 @@ function init() {
     plane.rotation.x = -Math.PI / 2;
     scene.add(plane);
 
-    // Raycaster & Mouse
-    raycaster = new THREE.Raycaster(camera.position);
+    // Mouse
     mouse = new THREE.Vector2();
+
+    //Loader
+    loader = new GLTFLoader.GLTFLoader();
     
     //Listen to click
     window.addEventListener('click', onMouseClick, false)
@@ -91,7 +96,7 @@ function onMouseClick(event) {
  //       addCube(point.x, point.y, point.z);
 //    }
 
-    addCube(camera.castRay(mouse));
+    addFurniture(camera.castRay(mouse));
     
 }
 
@@ -101,8 +106,6 @@ function addCube(finalPosition) {
     const material = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff });
     const cube = new THREE.Mesh(geometry, material);
     
-
-    output(`Cube Position: ${Math.round(finalPosition.x / 2) * 2}, 1, ${Math.round(finalPosition.z / 2) * 2}`);
     cube.position.set(Math.round(finalPosition.x / 2) * 2, 1, Math.round(finalPosition.z / 2) * 2);
     scene.add(cube);
     objects.push(cube);
@@ -119,3 +122,33 @@ function animate() {
     renderer.render(scene, camera.getCameraObject());
 }
 
+function changeFurniture(newFurniture) {
+    currentFurniture = newFurniture;
+}
+
+
+function addFurniture(finalPosition) {
+  if (currentFurniture) {
+    loader.load(
+      currentFurniture,
+      function (gltf) {
+        gltf.scene.position.set(Math.round(finalPosition.x / 2) * 2, 1, Math.round(finalPosition.z / 2) * 2);
+        gltf.scene.scale.set(1, 1, 1);
+
+        output(`furniture Position: ${gltf.scene.position.x}, ${gltf.scene.position.y}, ${gltf.scene.position.z}`);
+
+        scene.add(gltf.scene);
+        objects.push(gltf.scene);
+      },
+
+      undefined,
+
+      function(error) {
+        output(error)
+      }
+    )
+    
+  }
+
+
+}

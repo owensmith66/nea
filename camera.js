@@ -71,8 +71,7 @@ export class Camera {
 
       camera.rotation.setFromVector3(cameraRotation);
       
-      output(`Camera Rotation: ${camera.rotation.x.toFixed(2)*360/(2*Math.PI)}, ${camera.rotation.y.toFixed(2)*360/(2*Math.PI)}, ${camera.rotation.z.toFixed(2)*360/(2*Math.PI)}`);
-  }
+      }
 
    castRay(currentMousePosition) {
       let rayOrigin = this.__cameraObject.position;
