@@ -133,12 +133,11 @@ function addFurniture(finalPosition) {
       currentFurniture,
       function (gltf) {
         gltf.scene.position.set(Math.round(finalPosition.x / 2) * 2, 1, Math.round(finalPosition.z / 2) * 2);
-        gltf.scene.scale.set(1, 1, 1);
-
-        output(`furniture Position: ${gltf.scene.position.x}, ${gltf.scene.position.y}, ${gltf.scene.position.z}`);
-
+        gltf.scene.scale.set(1,1,1);
+        
         scene.add(gltf.scene);
         objects.push(gltf.scene);
+        output(`children: ${scene.children.length}`);
       },
 
       undefined,
